@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.2">
+    <persistence-unit name="gestion-reservations" transaction-type="RESOURCE_LOCAL">
+
+        <class>com.example.model.Utilisateur</class>
+        <class>com.example.model.Salle</class>
+        <class>com.example.model.Reservation</class>
+        <class>com.example.model.Equipement</class>
+
+        <properties>
+            <!-- Base H2 en mémoire -->
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:lab8;DB_CLOSE_DELAY=-1"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+
+            <!-- Hibernate -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="false"/>
+
+            <!-- Désactiver les logs verbeux des sessions -->
+            <property name="hibernate.session.events.log" value="false"/>
+            <property name="hibernate.session.events.log.LOG_QUERIES_SLOWER_THAN_MS" value="999999"/>
+
+            <!-- Cache de second niveau EhCache -->
+            <property name="hibernate.cache.use_second_level_cache" value="true"/>
+            <property name="hibernate.cache.region.factory_class"
+                      value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
+            <property name="hibernate.cache.use_query_cache" value="true"/>
+
+            <!-- Garder les stats activées uniquement pour PerformanceReport -->
+            <property name="hibernate.generate_statistics" value="true"/>
+        </properties>
+
+    </persistence-unit>
+</persistence>
